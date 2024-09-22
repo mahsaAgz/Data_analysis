@@ -125,3 +125,109 @@ This insight allows you to say, for example, that **Group C’s study method lea
 
 3. **Dunnett’s Test**: This test is used when you want to compare several groups to a **control group**, rather than making all possible pairwise comparisons.
 
+# ANOVA models
+
+### One-Way ANOVA
+
+#### What Is It?
+A **one-way ANOVA** is used to determine whether there are any statistically significant differences between the means of **three or more independent (unrelated) groups**, but it looks at just **one independent variable** (or factor). 
+
+#### Example
+Let’s say you’re testing the effect of **different fertilizers** (Fertilizer A, Fertilizer B, Fertilizer C) on **plant growth**.
+- **Independent variable**: Type of fertilizer (A, B, or C).
+- **Dependent variable**: Plant growth (measured in centimeters).
+
+In this case, you are only testing **one factor** (fertilizer type) to see if it affects the dependent variable (plant growth). If the ANOVA test results in a significant difference, you can conclude that the type of fertilizer has an impact on plant growth.
+
+#### When Do You Use It?
+- When you have **one independent variable** (with at least three levels or groups) and want to see if it influences the dependent variable.
+- For example: comparing test scores across three teaching methods, or measuring blood pressure across three different diets.
+
+### Two-Way ANOVA
+
+#### What Is It?
+A **two-way ANOVA** is used to see how two **independent variables** (factors) influence the **dependent variable**, and also to see if there’s an **interaction** between the two independent variables. It lets you evaluate the **individual** and **combined effects** of the two independent variables.
+
+There are three types of effects you analyze in a two-way ANOVA:
+1. **Main Effect of Factor 1**: The impact of the first independent variable on the dependent variable.
+2. **Main Effect of Factor 2**: The impact of the second independent variable on the dependent variable.
+3. **Interaction Effect**: Whether the combination of Factor 1 and Factor 2 has an effect on the dependent variable.
+
+#### Example
+Let’s say you are studying the effect of **fertilizer type** and **amount of water** on plant growth. The two factors (independent variables) are:
+- **Fertilizer type**: Fertilizer A, B, or C.
+- **Water amount**: 100 mL, 200 mL, or 300 mL.
+
+The dependent variable is plant growth (measured in centimeters).
+
+#### Possible Effects:
+1. **Main effect of Fertilizer type**: How does the type of fertilizer affect plant growth?
+2. **Main effect of Water amount**: How does the amount of water affect plant growth?
+3. **Interaction effect**: Does the effect of fertilizer depend on the amount of water used? In other words, does one fertilizer work better with a specific amount of water?
+
+#### When Do You Use It?
+- When you have **two independent variables**, and you want to study their individual effects as well as how they interact with each other.
+- For example: studying the effects of **teaching method** (lecture vs. online) and **study time** (1 hour, 2 hours) on test scores.
+
+### Three-Way ANOVA
+
+#### What Is It?
+A **three-way ANOVA** is used when you have **three independent variables** (factors) and you want to study their effects on the dependent variable, as well as their **interaction effects**. It’s an extension of the two-way ANOVA.
+
+In three-way ANOVA, you examine:
+1. **Three main effects** (one for each independent variable).
+2. **Three two-way interaction effects** (how each pair of independent variables interacts).
+3. **One three-way interaction effect** (how all three independent variables together affect the dependent variable).
+
+#### Example
+Suppose you want to study the effects of **fertilizer type**, **water amount**, and **sunlight exposure** on plant growth. Your independent variables are:
+- **Fertilizer type**: Fertilizer A, B, or C.
+- **Water amount**: 100 mL, 200 mL, or 300 mL.
+- **Sunlight exposure**: 4 hours, 6 hours, or 8 hours per day.
+
+#### Possible Effects:
+1. **Main effects**: 
+   - Effect of **fertilizer type** on plant growth.
+   - Effect of **water amount** on plant growth.
+   - Effect of **sunlight exposure** on plant growth.
+2. **Two-way interactions**: 
+   - Interaction between fertilizer type and water amount.
+   - Interaction between fertilizer type and sunlight exposure.
+   - Interaction between water amount and sunlight exposure.
+3. **Three-way interaction**: 
+   - Does the combination of fertilizer type, water amount, and sunlight exposure together affect plant growth in a significant way?
+
+#### When Do You Use It?
+- When you have **three independent variables** and want to study their individual effects and how they interact with each other and with the dependent variable.
+- For example: studying the effects of **drug dosage**, **age**, and **gender** on health outcomes.
+
+### Going Beyond Three-Way ANOVA (n-way ANOVA)
+
+You can extend this logic to **four-way ANOVA** or even **n-way ANOVA**, where you have more than three independent variables. However, as you add more factors, the complexity of the analysis increases, and interpreting interaction effects becomes more challenging.
+
+In an **n-way ANOVA**, you would have:
+- **n main effects** (one for each independent variable).
+- **Multiple two-way, three-way, and higher-order interactions**.
+
+### Interaction Effects: Why Are They Important?
+
+Interaction effects are important because they tell you whether the effect of one independent variable **depends** on the level of another independent variable. If there’s a significant interaction effect, it means that the independent variables work **together** in a way that influences the dependent variable.
+
+For example:
+- If you find a significant interaction between **fertilizer type** and **water amount**, it might mean that Fertilizer A works well only with 100 mL of water, while Fertilizer B works best with 200 mL of water.
+
+### Summary of Differences:
+
+| ANOVA Type        | Number of Independent Variables | What It Tests |
+|-------------------|---------------------------------|-------------------------------------------------|
+| **One-Way ANOVA** | 1                               | Tests whether the means of three or more groups are different for **one factor**. |
+| **Two-Way ANOVA** | 2                               | Tests the main effects of two factors, plus their interaction. |
+| **Three-Way ANOVA** | 3                               | Tests the main effects of three factors, two-way interactions, and the three-way interaction. |
+| **n-Way ANOVA**   | n                               | Tests the main effects and all interaction effects for **n factors**. |
+
+### Key Takeaways:
+- **One-way ANOVA**: Tests the effect of one independent variable (factor) on a dependent variable.
+- **Two-way ANOVA**: Tests the effects of two independent variables, as well as their interaction.
+- **Three-way ANOVA**: Extends the two-way ANOVA to test the effects of three independent variables and their interactions.
+- **n-way ANOVA**: Allows for testing of multiple independent variables and their interactions, but becomes complex as the number of factors increases.
+
