@@ -1,26 +1,64 @@
-Let me simplify the explanation and walk through another example:
+### What is a Paired t-test?
 
-### What is a Paired t-Test?
+A **paired t-test** is a type of statistical hypothesis test used to compare **two related groups** or **two measurements** on the same subjects. The key idea here is that the data points are not independent; instead, they are paired because they come from the same individuals or conditions measured twice.
 
-A **paired t-test** is a tool that helps us compare two related sets of numbers to see if there is a meaningful difference between them. It's used when you're measuring something twice on the same people or items, like "before and after" or two different methods an event or treatment.
+### When and Why Do We Use the Paired t-test?
 
-### Why and When We Use It
+You use a paired t-test when:
+1. **You have two sets of measurements** from the same subjects or units.
+2. These two measurements are **related or paired** in some meaningful way. For example, they might represent two different methods measuring the same thing, or measurements taken at two different time points (e.g., pre-test and post-test).
+3. You want to compare these two sets of measurements to see if there is a statistically significant difference between them.
 
-- **Why**: To see if there’s a real change or difference between two sets of measurements on the same subjects.
-- **When**: 
-  - You have two sets of related data (e.g., before and after).
-  - You want to see if the average difference between those two sets is significant, not just due to random chance.
+The test helps answer the question: **Are the differences between the two sets of paired data significant or could they have occurred by random chance?**
 
-### Outcomes and What They Mean
+### How Does the Paired t-test Work?
 
-1. **t-value/ t-statistic**: A number that tells us how big the difference is between the two sets, compared to how much the values vary.
+The paired t-test works by calculating the differences between the paired observations, and then testing whether the **mean** of these differences is significantly different from zero.
+
+1. **Difference Calculation**:
+   - For each subject, calculate the difference between the two paired measurements:
+     
+     $d_i = \text{A}_i - \text{B}_i$
+    
+   - $d_i$ represents the difference in pose estimation for the $i-th$subject.
+
+2. **Test Statistic (t-value)**:
+   - The paired t-test then computes the mean difference $\overline{d}$ and the standard deviation of the differences ($s_d$).
+   - The t-statistic is calculated as:
+     $t = \frac{\overline{d}}{s_d / \sqrt{n}}$
+   - Where:
+     - $\overline{d}$ is the average of the differences.
+     - $s_d$ is the standard deviation of the differences.
+     - $n$ is the number of paired observations.
+
+3. **Null Hypothesis**:
+   - The paired t-test tests the **null hypothesis** that the **mean difference** between the paired measurements is zero, i.e., there is no significant difference between the two methods.
+   - The alternative hypothesis is that the mean difference is not zero, i.e., there **is** a significant difference between the two methods.
+
+### Outcomes of the Paired t-test
+
+1. **t-value**:
+   - The t-value represents how many standard deviations the sample mean of the differences is from the hypothesized population mean (which is zero under the null hypothesis).
+   - A **larger t-value** suggests a larger difference between the two paired groups relative to the variability of the differences.
+
+2. **p-value**:
+   - The p-value tells you the probability of observing a difference as large (or larger) than the one you calculated, assuming the null hypothesis is true (i.e., assuming there is no real difference between method A and method B).
+   - **If the p-value is less than your significance level (usually 0.05)**, you reject the null hypothesis and conclude that there is a statistically significant difference between the two methods.
+   - **If the p-value is greater than 0.05**, you fail to reject the null hypothesis, meaning the difference between method A and method B is not statistically significant.
+
+### Interpreting Results
+
+- **Significant p-value (< 0.05)**: If you find a significant p-value, this suggests that there is a significant difference between the two methods (e.g., method A might be more or less accurate than method B). The mean of the differences is statistically different from zero.
+  
+- **Non-significant p-value (≥ 0.05)**: A non-significant p-value indicates that the differences between method A and method B are not statistically significant, meaning both methods may perform similarly in terms of accuracy for this dataset.
+
+### Assumptions of the Paired t-test
+
+1. **Normality of Differences**: The differences between the paired observations should be approximately normally distributed. If this assumption is violated, especially with small sample sizes, a non-parametric test (like the Wilcoxon signed-rank test) might be a better choice.
    
-2. **p-value**: A number that tells us if the difference is likely to be real or just random. A small p-value (usually less than 0.05) means the difference is probably real.
-   
-3. **Conclusion**: If the p-value is small, we say the change is significant. If it's large, we say there's no meaningful change.
+2. **Paired Data**: The data points must be paired, meaning each observation in one group corresponds to an observation in the other group. In your case, each method A estimate corresponds to an method B estimate for the same pose and subject.
 
----
-
+----
 ### Example: Paired t-Test
 
 #### Scenario:
