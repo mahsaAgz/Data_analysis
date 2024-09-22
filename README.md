@@ -1,2 +1,2 @@
-# Data_analysis
+# Data Analysis
 Notes on Data analysis
