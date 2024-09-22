@@ -51,16 +51,6 @@ $H_A: \text{At least one group mean is different}$
    - **p-value < 0.05**: You reject the null hypothesis and conclude that at least one group mean is significantly different.
    - **p-value ≥ 0.05**: You fail to reject the null hypothesis, meaning there is no statistically significant difference between the groups.
 
-# But Wait… Which Groups are Different?
-
-ANOVA tells you that **at least one group** is different, but it doesn’t tell you **which groups** are different. For that, you perform **post-hoc tests**.
-
-## Post-hoc Tests (like Tukey’s HSD)
-
-Once ANOVA shows that there’s a significant difference between groups, a post-hoc test (like **Tukey’s HSD**) is used to determine **which specific groups** are different from each other.
-
-For example, if ANOVA shows that weight loss is significantly different between the diets, the post-hoc test might reveal that Diet B leads to significantly more weight loss than Diet A, while Diet C does not differ significantly from either.
-
 # Assumptions of ANOVA
 
 Before using ANOVA, you should check these assumptions:
@@ -68,14 +58,70 @@ Before using ANOVA, you should check these assumptions:
 2. **Homogeneity of variances**: The variance within each group should be roughly equal.
 3. **Independent observations**: The data points in each group should be independent of each other.
 
-### Summary
 
-- **ANOVA** compares **three or more groups** to see if their means are significantly different.
-- It calculates the **F-value**, which is the ratio of the variance between groups to the variance within groups.
-- A **large F-value** and a **p-value < 0.05** suggest that at least one group mean is different from the others.
-- After ANOVA, you use a **post-hoc test** (like Tukey’s HSD) to figure out exactly **which groups** are different.
+# But Wait… Which Groups are Different?
+### What are Post-hoc Tests?
+**Post-hoc tests** are additional statistical tests conducted **after** an ANOVA reveals that there are significant differences among the group means. ANOVA tells you **if at least one group is different**, but it does **not specify which groups** are different from each other. That's where post-hoc tests come into play — they help you identify exactly **which pairs of groups** differ significantly.
 
-### Key Takeaways:
-- ANOVA helps you determine whether **any group** is significantly different from the others.
-- The **F-value** compares how much the group means differ relative to the variability within groups.
-- A **post-hoc test** helps pinpoint where the significant differences are.
+One of the most common post-hoc tests is **Tukey’s HSD (Honestly Significant Difference)**, which compares all possible pairs of groups to determine which ones have significant differences in their means.
+
+### Why Do We Perform Post-hoc Tests?
+
+ANOVA compares the means of **three or more groups** and simply tells us whether a **statistically significant difference** exists between them. However, it doesn't specify **which groups** are significantly different from each other. Without this information, we can't know which of the multiple comparisons (i.e., group pairs) are driving the overall difference.
+
+Performing multiple t-tests (comparing pairs of groups) could seem like a solution, but there's a problem with that approach: as you conduct more t-tests, the chance of making a **Type I error** (incorrectly rejecting a true null hypothesis, or finding a false positive) increases. For example, if you run enough t-tests, you're bound to eventually find a difference by random chance, even if none actually exists.
+
+**Post-hoc tests**, like Tukey’s HSD, are designed to control for this increased risk of error by adjusting for the number of comparisons being made. Essentially, these tests help us find **where** the significant differences lie, while keeping the error rate controlled.
+
+### How Does Tukey’s HSD Work?
+
+**Tukey’s HSD** compares the means of all pairs of groups and determines whether the **difference between any two means** is larger than what would be expected by chance. It works by calculating a critical value, based on the **distribution of the differences** and the **overall variability** of the data (similar to how a t-test works), but with a correction for multiple comparisons.
+
+The test computes a **minimum significant difference** (HSD), which is the smallest difference between two means that would be considered statistically significant, given the variability in the data and the number of comparisons being made.
+
+The formula for calculating the **Tukey HSD** is:
+$HSD = q \cdot \sqrt{\frac{MS_{within}}{n}}$
+Where:
+- $q$ is the **studentized range statistic** (based on the number of groups and the degrees of freedom).
+- $MS_{within}$ is the **mean square within groups** (which comes from the ANOVA table and measures the variance within groups).
+- $n$ is the **number of observations** per group (assuming equal group sizes).
+
+Tukey's test then compares each pair of group means and determines if their difference exceeds the **HSD value**. If it does, the test concludes that those two groups are significantly different.
+
+### Example of Tukey’s HSD
+
+Let’s say you conducted an ANOVA to compare the test scores of students using **three different study methods** (Group A, Group B, and Group C). ANOVA tells you that there is a significant difference in scores between at least two of these groups, but it doesn't tell you which groups differ.
+
+You then run **Tukey’s HSD** to compare all possible pairs of groups:
+1. Compare **Group A vs. Group B**
+2. Compare **Group A vs. Group C**
+3. Compare **Group B vs. Group C**
+
+Tukey’s HSD tells you exactly which pairs of groups are significantly different and by how much. For instance:
+- Group A and Group B might **not** differ significantly.
+- Group A and Group C might have a significant difference in scores.
+- Group B and Group C might also differ significantly.
+
+This insight allows you to say, for example, that **Group C’s study method leads to significantly higher test scores** compared to the other groups.
+
+### Key Insights from Post-hoc Tests
+
+1. **Identify Specific Differences**: Post-hoc tests help you determine **which specific groups** differ after ANOVA shows that **some** groups are different. This gives you more detailed insights into the nature of the differences.
+   
+2. **Control Type I Error**: When you compare multiple groups, the likelihood of falsely finding significant differences (Type I error) increases. Post-hoc tests, like Tukey’s HSD, **correct for multiple comparisons** to prevent this error.
+
+3. **Detailed Comparison**: While ANOVA provides a general result (at least one group is different), post-hoc tests provide **pairwise comparisons**, telling you which specific pairs of groups are significantly different from each other.
+
+### When to Use Tukey's HSD
+
+- **When ANOVA results are significant**: Only run a post-hoc test like Tukey’s HSD if your ANOVA test shows that there is a significant difference between the group means. If ANOVA doesn’t show a significant difference, there's no need for further testing.
+- **When you have equal or similar group sizes**: Tukey’s HSD is most appropriate when group sizes are approximately equal. If group sizes differ greatly, other post-hoc tests like **Games-Howell** might be more appropriate.
+  
+### Other Common Post-hoc Tests
+
+1. **Bonferroni Correction**: This is a very simple method for adjusting p-values when making multiple comparisons. It’s more conservative than Tukey’s HSD and divides the alpha level (e.g., 0.05) by the number of comparisons made to avoid Type I errors.
+   
+2. **Scheffé’s Test**: This is a flexible post-hoc test that is more conservative (less likely to detect significant differences) but can be used in a variety of comparisons, even if the comparisons weren’t planned before running the ANOVA.
+
+3. **Dunnett’s Test**: This test is used when you want to compare several groups to a **control group**, rather than making all possible pairwise comparisons.
+
